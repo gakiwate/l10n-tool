@@ -1,0 +1,36 @@
+Explanation of scripts
+
+==================
+cache2parallel.py
+==================
+This script is used to convert the php cache files. It uses the lang.list in the same folder
+to find all the php cache files and convert them to parallel corpora. The parallel corpora will
+be stored in ~/corpus.
+
+It is important to note that because the files created from this will be further used by Moses
+it is important to get the language codes right. Because Moses does not distinguish between 
+en-US, en-UK etc. we have to make sure the naming is cache_en.php
+The naming format cache_<lang>.php
+
+<lang> will be listed in list.lang
+
+To Run:
+	python cache2parallel.py
+
+NOTE:
+	It is assumed that the lang.list and the php cache files are loacted in the same folder as that of the script.
+
+====================
+create_lex_tables.sh
+====================
+This is a bash script that takes in the parallel corpora and outputs lex files to
+	~/lex-dir
+
+This assumes that you have installed Moses, GIZA, IRSTLM as instructed in the Instructions.
+
+To Run:
+	bash create_lex_tables.sh
+
+NOTE:
+	It is assumed that lang.list is located in the same folder.
+	Make sure the parallel corpus is created before running this script.

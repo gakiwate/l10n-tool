@@ -1,0 +1,91 @@
+=====================
+Baseline Installation
+=====================
+This set of Instructions will deal with the setting up of a Baseline System on a Linux System.
+
+The minimum software requirements are:
+1. Moses
+2. GIZA++
+3. IRSTLM
+
+------------------
+Moses Installation
+------------------
+
+Dependencies
+------------
+1. Install boost
+Moses requires boost. Most of the linux distributions have a package for it. If your distribution has
+separate development packages, you need to install those too. Ubuntu requires "libboost-all-dev"
+
+2. Other than that Moses requires quite a few other software. While Moses does not require them during compile time but during runtime it will spew out errors and you will have no idea why. In this case we have no option but to wade through the errors. Listed below are packages/libraries that I faced a problem with and you should make sure you have them installed before going ahead with the installation.
+	a. zlib* - Compression Libraries
+	b. automake libraries
+
+Installation
+-------------
+Ideally download the source in your home folder
+1. Download Source for mosesdecoder
+	git clone git://github.com/moses-smt/mosesdecoder.git
+2. Compile by
+	cd ~/mosesdecoder
+	./bjam
+Note: You can build in parallel by 
+	./bjam -j<num>
+	<num> depends on number of cpus
+For help:
+	./bjam --help
+
+-------------------
+GIZA++ Installation
+-------------------
+GIZA++ is hosted at Google Code
+
+1. Download and Extract 
+	wget http://giza-pp.googlecode.com/files/giza-pp-v1.0.7.tar.gz
+	tar xzvf giza-pp-v1.0.7.tar.gz
+2. Compile
+	cd giza-pp
+	make
+
+This should create the binaries ~/giza-pp/GIZA++-v2/GIZA++, ~/giza-pp/GIZA++-v2/snt2cooc.out
+and ~/giza-pp/mkcls-v2/mkcls. 
+
+These need to be copied to somewhere that Moses can find them as follows
+	cd ~/mosesdecoder
+	mkdir giza
+	cp ~/giza-pp/GIZA++-v2/GIZA++ ~/giza-pp/GIZA++-v2/snt2cooc.out ~/giza-pp/mkcls-v2/mkcls giza
+
+-------------------
+IRSTLM Installation
+-------------------
+1. Download from sourceforge. Version 5.70.04
+2. Extract 
+	tar zxvf irstlm-5.70.04.tgz
+	cd irstlm-5.70.04
+3. Run Scripts
+	./regenerate-makefiles.sh
+	./configure --prefix=$HOME/irstlm
+4. Compile and Install
+	make
+	make install
+
+--------------------
+Further Instructions
+--------------------
+Moses to link its scripts to GIZA++ and install them in the dist directory
+This can be done with the following commands
+	cd ~/mosesdecoder
+	./bjam --with-giza=$HOME/mosesdecoder/giza --install-scripts=$HOME/mosesdecoder/dist
+
+NOTE: You can also pass option --with-irstlm=$HOME/irstlm
+
+
+==========
+References
+==========
+1. Statistical Machine Translation System - User Manual and Code Guide
+	Philipp Koehn pkoehn@inf.ed.ac.uk
+	University of Edinburgh
+
+
