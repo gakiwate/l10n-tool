@@ -69,6 +69,6 @@ do
 	nohup nice $MOSES_PATH/scripts/training/train-model.perl -external-bin-dir $EX_BIN_DIR -root-dir train \
 		-corpus $CORPUS_PATH/Mozilla.$M_LANG-$F_LANG/Mozilla.clean -f $F_LANG -e $M_LANG -alignment grow-diag-final-and \
 		-reordering msd-bidirectional-fe -lm 0:3:$LM_PATH/Mozilla.$M_LANG-$F_LANG/Mozilla.blm.$M_LANG:8 >& training.out
-	cp $WORKING_PATH/Mozilla.$M_LANG-$F_LANG/train/model/lex.f2e $LEX_DIR/Mozilla.lex.$M_LANG-$F_LANG
+	sort $WORKING_PATH/Mozilla.$M_LANG-$F_LANG/train/model/lex.f2e > $LEX_DIR/Mozilla.lex.$M_LANG-$F_LANG
 	cd -
 done
