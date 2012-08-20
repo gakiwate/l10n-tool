@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 import sys
-TOLERANCE = 0.1
+TOLERANCE = 0.05
 
 
 if len(sys.argv)==1:
