@@ -1,4 +1,22 @@
-Explanation of scripts
+Explanation of scripts and files
+
+==================
+list.lang
+==================
+This is a text file. The languages that you want to work with. 
+
+It is important to note that because the files created from this will be further used by Moses
+it is important to get the language codes right. Because Moses does not distinguish between 
+en-US, en-UK etc.
+
+<lang> will be listed in list.lang
+
+You can download the cache files from the following link
+http://transvision.mozfr.org/TMX/show.php?repo=release&locale=fr&cache=en-US
+
+You can make suitable changes to the link above to download from and locale of the cache file you want to download.
+
+A shell script will be put up shortly to help you download.
 
 ==================
 cache2parallel.py
@@ -20,6 +38,10 @@ To Run:
 NOTE:
 	It is assumed that the lang.list and the php cache files are loacted in the same folder as that of the script.
 
+==================
+tune-corpus.py
+==================
+There are times when you would like to clean up the parallel corpus. Especially when you have only limted strings translated in the corpus. This script will go through your corpus and make sure that 
 ====================
 create_lex_tables.sh
 ====================
